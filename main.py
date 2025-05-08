@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+import re
 
 def main():
     prompt_user()
@@ -19,11 +20,10 @@ def prompt_user():
         sys.exit(0)
 
 def calculate_dmg():
-    print("What is the bottom of your damage range with \"All In\" OFF?")
-    base_min_dmg = int(input())
-
-    print("What is the top of your damage range with \"All In\" OFF?")
-    base_max_dmg = int(input())
+    print("What is your damage range with \"All In\" OFF?")
+    base_damage_vals = re.findall(r'\d+', str(input()))
+    base_min_dmg = int(base_damage_vals[0])
+    base_max_dmg = int(base_damage_vals[1])
 
     print("What is your chance to hit with \"All In\" OFF? (Enter w/o percent sign): ")
     base_hit_chance = int(input())
